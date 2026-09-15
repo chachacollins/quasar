@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <string_view>
 #include <vector>
 
 #define START_POSITION "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 "
@@ -7,10 +8,10 @@
 
 namespace Quasar
 {
-    enum class Sides
+    enum Sides
     {
-        White,
-        Black,
+        WHITE,
+        BLACK,
     };
 
     enum Types
@@ -41,7 +42,7 @@ namespace Quasar
         BQ,
     };
 
-    enum class Castling
+    enum Castling
     {
         WKC = 1,
         WQC = 2,
@@ -80,9 +81,9 @@ namespace Quasar
     {
         std::array<int, BOARD_SIZE> board;
         std::array<int, 2> king_square = {E1, E8};
-        Sides side = Sides::White;
+        int side =  WHITE;
         int enpassant = NONE;
-        Castling castle = Castling::ALL;
+        int castle = ALL;
         long nodes = 0;
         std::array<std::array<int, 128>, 7> piece_keys;
         std::array<std::array<int, 64>, 2> killer_moves{};
