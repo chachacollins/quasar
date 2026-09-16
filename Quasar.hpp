@@ -51,10 +51,10 @@ namespace Quasar
         ALL = 15,
     };
 
-    enum class CaptureFlags
+    enum CaptureFlags
     {
-        All_Moves,
-        Only_Captures,
+        ALL_MOVES,
+        ONLY_CAPTURES,
     };
 
     enum class GamePhase
@@ -96,8 +96,6 @@ namespace Quasar
     };
 
     using Position = State;
-
-    using MoveList = std::vector<int>;
 
     inline constexpr std::array<std::array<int, 2>, 2> castling_side = {{{1, 2}, {4, 8}}};
 
@@ -343,6 +341,7 @@ namespace Quasar
         A7, B7, C7, D7, E7, F7, G7, H7,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
         A8, B8, C8, D8, E8, F8, G8, H8,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE
     };
+
     //TODO: UCI
     // int quit = 0;
     // int movestogo = 30;
