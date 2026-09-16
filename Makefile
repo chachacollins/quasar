@@ -1,5 +1,5 @@
 CXX = g++
-CFLAGS = -Wall -Wextra -ggdb -std=c++20
+CFLAGS = -Wall -Wextra -ggdb -std=c++20 -O3
 CPPFLAGS = -MMD -MP 
 
 SRCS = $(wildcard *.cpp)

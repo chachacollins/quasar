@@ -29,6 +29,8 @@ namespace Quasar
     const int& MoveList::operator[](int i) const { return moves[i]; }
     int MoveList::size() const { return count; }
     void MoveList::clear() { count = 0; }
+    const int* MoveList::begin() const { return moves.begin(); }
+    const int* MoveList::end()   const { return moves.begin() + count; }
 
     bool is_square_attacked(const State& state, int square, int color)
     {

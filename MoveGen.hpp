@@ -12,10 +12,8 @@ namespace Quasar
         const int& operator[](int i) const;
         int size() const;
         void clear();
-        auto begin();
-        auto end();
-        auto begin() const;
-        auto end() const;
+        const int* begin() const;
+        const int* end() const;
     };
 
     int encode_move(int source, int target, int promoted, int capture,
@@ -29,6 +27,8 @@ namespace Quasar
     int get_move_castling(int move);
 
     bool is_square_attacked(const State& state, int square, int color);
+
+    void generate_moves(const State &state, MoveList& moves);
 
     bool make_move(State& state, int move, int capture);
 }
