@@ -158,8 +158,6 @@ namespace Quasar
     inline constexpr std::array<int, 2> pawn_starting_rank  = {0x60, 0x10};
     inline constexpr std::array<int, 2> pawn_promoting_rank = {0x00, 0x70};
 
-    //inline constexpr int random_state = 12345;
-
     // https://chessprogramming.org/MVV-LVA
     inline constexpr std::array<std::array<int, 15>, 15> mvv_lva = {
         0, 0,   0,   0,   0,   0,   0,   0, 0, 0,   0,   0,   0,   0,   0,
