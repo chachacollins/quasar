@@ -193,8 +193,11 @@ namespace Quasar
              state.board[from_square] = EMPTY;
 
              if (promoted_piece) state.board[to_square] = promoted_piece;
-             if (ep) !state.side ? (state.board[to_square + 16] = EMPTY) :
-                                   (state.board[to_square - 16] = EMPTY);
+             if (ep)
+             {
+                 int captured_pawn_sq = !state.side ? (to_square - 16) : (to_square + 16);
+                 state.board[captured_pawn_sq] = EMPTY;
+             }
              if (double_push)
                  state.enpassant = !state.side ? to_square + 16 : to_square - 16;
              else

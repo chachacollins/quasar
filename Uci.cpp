@@ -189,7 +189,7 @@ namespace Quasar
                 std::cout << "readyok\n";
                 continue;
             }
-            else if (sv.substr(0, 24) == "position startpos moves")
+            else if (sv.substr(0, 23) == "position startpos moves")
             {
                 set_board(state, START_POSITION);
                 play_moves(sv.substr(24));
