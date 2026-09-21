@@ -351,4 +351,6 @@ namespace Quasar
     inline int stoptime = 0;
     inline int timeset = 0;
     inline bool stopped = 0;
+
+    void communicate();
 }

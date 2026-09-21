@@ -176,7 +176,7 @@ namespace Quasar
 
     int quiescence_search(State& state, int alpha, int beta)
     {
-        // if ((state.nodes & 2047) == 0) communicate();
+        if ((nodes & 2047) == 0) communicate();
         ++nodes;
 
         int eval = evaluate_position(state);
@@ -208,7 +208,7 @@ namespace Quasar
         int legal_moves = 0;
         pv_length[ply] = ply;
         if (ply && is_repetition(state)) return 0;
-        //if ((nodes & 2047 ) == 0) communicate();
+        if ((nodes & 2047 ) == 0) communicate();
         if (!depth) return quiescence_search(state, alpha, beta);
         nodes++;
 
@@ -294,10 +294,11 @@ namespace Quasar
                     << " time " << elapsed_ms
                     << " pv ";
 
-            for (int i = 0; i < pv_length[0]; i++)
+            for (int i = 0; i < pv_length[0]; i++) 
             {
                 int move = pv_table[0][i];
                 print_move(get_move_source(move), get_move_target(move), get_move_promoted(move));
+                std::cout << " ";
             }
             std::cout << "\n" << std::flush;
 

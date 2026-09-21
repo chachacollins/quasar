@@ -3,6 +3,5 @@
 
 namespace Quasar
 {
-    int evaluate_position(const State& state);
-    int score_move(const State& state, int move);
+    int search_position(State &state, int depth);
 }
