@@ -14,14 +14,14 @@ namespace Quasar
         return number;
     }
 
-    void init_random_keys(State& state)
+    void init_random_keys()
     {
         for (int piece = 0; piece < 7; piece++)
             for (int square = 0; square < 128; square++)
-                state.piece_keys[piece][square] = get_random_32_number();
+                piece_keys[piece][square] = get_random_32_number();
     }
 
-    int generate_hash_key(State& state) 
+    int generate_hash_key(const State& state) 
     {
         int final_key = 0;
         for (int square = 0; square < 128; square++)
@@ -30,7 +30,7 @@ namespace Quasar
             char piece = state.board[square] & 7;
             if (piece) 
             {
-                final_key ^= state.piece_keys[piece][square];
+                final_key ^= piece_keys[piece][square];
                 final_key ^= state.board[square] >> 3;
             }
         }

@@ -29,8 +29,8 @@ namespace Quasar
         state.side      = NONE;
         state.castle    = EMPTY;
         state.enpassant = NONE;
-        state.repetition_index = 0;
-        state.repetition_table.fill(0);
+        repetition_index = 0;
+        repetition_table.fill(0);
         for(int rank = 0; rank < 8; rank++)
         {
             for(int file = 0; file < 16; file++)

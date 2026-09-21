@@ -57,11 +57,11 @@ namespace Quasar
         ONLY_CAPTURES,
     };
 
-    enum class GamePhase
+    enum GamePhase
     {
-        Opening,
-        Endgame,
-        Middlegame,
+        OPENING,
+        ENDGAME,
+        MIDDLEGAME,
     };
 
     //DOC: https://chessprogramming.org/0x88
@@ -84,15 +84,6 @@ namespace Quasar
         int side =  WHITE;
         int enpassant = NONE;
         int castle = ALL;
-        long nodes = 0;
-        std::array<std::array<int, 128>, 7> piece_keys;
-        std::array<std::array<int, 64>, 2> killer_moves{};
-        std::array<std::array<int, BOARD_SIZE>, 15> history_moves{};
-        std::array<std::array<int, 64>, 64> pv_table;
-        std::array<int, 64> pv_length;
-        std::array<int, 1000> repetition_table;
-        int repetition_index;
-        int ply = 0;
     };
 
     using Position = State;
@@ -340,14 +331,24 @@ namespace Quasar
         A8, B8, C8, D8, E8, F8, G8, H8,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE
     };
 
-    //TODO: UCI
-    // int quit = 0;
-    // int movestogo = 30;
-    // int movetime = -1;
-    // int time = -1;
-    // int inc = 0;
-    // int starttime = 0;
-    // int stoptime = 0;
-    // int timeset = 0;
-    // int stopped = 0;
+    inline int nodes = 0;
+    inline int ply = 0;
+    inline int repetition_index = 0;
+
+    inline std::array<std::array<int, 128>, 7> piece_keys;
+    inline std::array<std::array<int, 64>, 2> killer_moves{};
+    inline std::array<std::array<int, BOARD_SIZE>, 15> history_moves{};
+    inline std::array<std::array<int, 64>, 64> pv_table;
+    inline std::array<int, 64> pv_length;
+    inline std::array<int, 1000> repetition_table;
+
+    inline int quit = 0;
+    inline int movestogo = 30;
+    inline int movetime = -1;
+    inline int time = -1;
+    inline int inc = 0;
+    inline int starttime = 0;
+    inline int stoptime = 0;
+    inline int timeset = 0;
+    inline bool stopped = 0;
 }
