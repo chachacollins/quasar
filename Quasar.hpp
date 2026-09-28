@@ -8,13 +8,13 @@
 
 namespace Quasar
 {
-    enum Sides
+    enum Sides: uint8_t
     {
         WHITE,
         BLACK,
     };
 
-    enum Types
+    enum Types: int8_t
     {
         NONE = -1,
         EMPTY,
@@ -26,7 +26,7 @@ namespace Quasar
         QUEEN,
     };
 
-    enum Pieces
+    enum Pieces: uint8_t
     {
         WK = 1,
         WP,
@@ -42,7 +42,7 @@ namespace Quasar
         BQ,
     };
 
-    enum Castling
+    enum Castling: uint8_t
     {
         WKC = 1,
         WQC = 2,
@@ -51,13 +51,13 @@ namespace Quasar
         ALL = 15,
     };
 
-    enum CaptureFlags
+    enum CaptureFlags: uint8_t
     {
         ALL_MOVES,
         ONLY_CAPTURES,
     };
 
-    enum GamePhase
+    enum GamePhase: uint8_t
     {
         OPENING,
         ENDGAME,
@@ -65,7 +65,7 @@ namespace Quasar
     };
 
     //DOC: https://chessprogramming.org/0x88
-    enum Squares
+    enum Squares: uint8_t
     {
         A8 = 0,   B8, C8, D8, E8, F8, G8, H8,
         A7 = 16,  B7, C7, D7, E7, F7, G7, H7,
@@ -79,16 +79,12 @@ namespace Quasar
 
     struct State
     {
-        std::array<int, BOARD_SIZE> board;
-        std::array<int, 2> king_square = {E1, E8};
-        int side =  WHITE;
-        int enpassant = NONE;
-        int castle = ALL;
+        std::array<uint8_t, BOARD_SIZE> board;
+        std::array<uint8_t, 2> king_square = {E1, E8};
+        int8_t side =  WHITE;
+        int8_t enpassant = NONE;
+        int8_t castle = ALL;
     };
-
-    using Position = State;
-
-    inline constexpr std::array<std::array<int, 2>, 2> castling_side = {{{1, 2}, {4, 8}}};
 
     inline constexpr std::array<int, BOARD_SIZE> castling_rights = {
         7, 15, 15, 15,  3, 15, 15, 11,   NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
@@ -113,9 +109,9 @@ namespace Quasar
     };
 
     //C++ "doesn't support designated initializers"
-    constexpr std::array<int, BOARD_SIZE> make_char_pieces()
+    constexpr std::array<uint8_t, BOARD_SIZE> make_char_pieces()
     {
-        std::array<int, BOARD_SIZE> table{};
+        std::array<uint8_t, BOARD_SIZE> table{};
         table['P'] = WP; table['N'] = WN; table['B'] = WB;
         table['R'] = WR; table['Q'] = WQ; table['K'] = WK;
         table['p'] = BP; table['n'] = BN; table['b'] = BB;
@@ -123,34 +119,34 @@ namespace Quasar
         return table;
     }
 
-    inline constexpr std::array<int, BOARD_SIZE> char_pieces = make_char_pieces();
+    inline constexpr std::array<uint8_t, BOARD_SIZE> char_pieces = make_char_pieces();
 
-    constexpr std::array<int, BQ+1> make_promoted_pieces()
+    constexpr std::array<uint8_t, BQ+1> make_promoted_pieces()
     {
-        std::array<int, BQ+1> table{};
+        std::array<uint8_t, BQ+1> table{};
         table[WQ] = 'q'; table[WR] = 'r'; table[WB] = 'b'; table[WN] = 'n';
         table[BQ] = 'q'; table[BR] = 'r'; table[BB] = 'b'; table[BN] = 'n';
         return table;
     }
 
-    inline constexpr std::array<int, BQ+1> promoted_pieces = make_promoted_pieces();
+    inline constexpr std::array<uint8_t, BQ+1> promoted_pieces = make_promoted_pieces();
 
     inline constexpr std::string_view ascii_pieces = ".KPNBRQ--kpnbrq";
 
-    inline constexpr std::array<std::array<int, 8>, 7> move_offsets = {{
+    inline constexpr std::array<std::array<int8_t, 8>, 7> move_offsets = {{
         { 0 }, { -16, -1, 16, 1, -17, -15, 17, 15 },
         { 0 }, { -33, -31, 33, 31, -18, -14, 18, 14 },
         { -17, -15, 17, 15}, {-16, -1, 16, 1 },
         { -16, -1, 16, 1, -17, -15, 17, 15 }
     }};
 
-    inline constexpr std::array<int, 7> offset_length = { 0, 8, 0, 8, 4, 4, 8 };
+    inline constexpr std::array<uint8_t, 7> offset_length = { 0, 8, 0, 8, 4, 4, 8 };
 
-    inline constexpr std::array<int, 2> pawn_starting_rank  = {0x60, 0x10};
-    inline constexpr std::array<int, 2> pawn_promoting_rank = {0x00, 0x70};
+    inline constexpr std::array<uint8_t, 2> pawn_starting_rank  = {0x60, 0x10};
+    inline constexpr std::array<uint8_t, 2> pawn_promoting_rank = {0x00, 0x70};
 
     // https://chessprogramming.org/MVV-LVA
-    inline constexpr std::array<std::array<int, 15>, 15> mvv_lva = {
+    inline constexpr std::array<std::array<uint16_t, 15>, 15> mvv_lva = {
         0, 0,   0,   0,   0,   0,   0,   0, 0, 0,   0,   0,   0,   0,   0,
         0, 600, 100, 200, 300, 400, 500, 0, 0, 600, 100, 200, 300, 400, 500,
         0, 605, 105, 205, 305, 405, 505, 0, 0, 605, 105, 205, 305, 405, 505,
@@ -176,7 +172,7 @@ namespace Quasar
         0, 12000, 94, 281, 297, 512,  936, 0, 0, -12000, -94, -281, -297, -512,  -936
     };
 
-    inline constexpr int positional_score[2][7][128] = {
+    constexpr int16_t positional_score[2][7][128] = {
         { // Opening square values
 
             {0},
@@ -320,27 +316,16 @@ namespace Quasar
         }
     };
 
-    inline constexpr std::array<int, 128> mirror_score = {
-        A1, B1, C1, D1, E1, F1, G1, H1,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
-        A2, B2, C2, D2, E2, F2, G2, H2,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
-        A3, B3, C3, D3, E3, F3, G3, H3,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
-        A4, B4, C4, D4, E4, F4, G4, H4,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
-        A5, B5, C5, D5, E5, F5, G5, H5,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
-        A6, B6, C6, D6, E6, F6, G6, H6,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
-        A7, B7, C7, D7, E7, F7, G7, H7,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
-        A8, B8, C8, D8, E8, F8, G8, H8,    NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE
-    };
-
     inline int nodes = 0;
     inline int ply = 0;
     inline int repetition_index = 0;
 
-    inline std::array<std::array<int, 128>, 7> piece_keys;
-    inline std::array<std::array<int, 64>, 2> killer_moves{};
-    inline std::array<std::array<int, BOARD_SIZE>, 15> history_moves{};
-    inline std::array<std::array<int, 64>, 64> pv_table;
-    inline std::array<int, 64> pv_length;
-    inline std::array<int, 1000> repetition_table;
+    inline std::array<std::array<uint8_t, 128>, 7> piece_keys;
+    inline std::array<std::array<uint8_t, 64>, 2> killer_moves{};
+    inline std::array<std::array<uint8_t, BOARD_SIZE>, 15> history_moves{};
+    inline std::array<std::array<uint8_t, 64>, 64> pv_table;
+    inline std::array<uint8_t, 64> pv_length;
+    inline std::array<uint8_t, 1000> repetition_table;
 
     inline int quit = 0;
     inline int movestogo = 30;

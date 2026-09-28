@@ -3,6 +3,7 @@
 
 namespace Quasar
 {
+    static constexpr std::array<std::array<int, 2>, 2> castling_side = {{{1, 2}, {4, 8}}};
     int encode_move(int source, int target, int promoted, int capture,
                     int push, int enpassant, int castling)
     {
@@ -129,8 +130,8 @@ namespace Quasar
                    if (state.board[ks + 1] == EMPTY && state.board[ks + 2] == EMPTY)
                    {
                        if (!is_square_attacked(state, ks, 1 - state.side) &&
-                           !is_square_attacked(state, ks + 1, 1 - state.side) &&
-                           !is_square_attacked(state, ks + 2, 1 - state.side)
+                           !is_square_attacked(state, ks + 1, 1 - state.side)
+                           // !is_square_attacked(state, ks + 2, 1 - state.side)
                             )
                        {
                             moves.push(encode_move(ks, ks + 2, 0, 0, 0, 0, 1));
@@ -144,8 +145,9 @@ namespace Quasar
                         state.board[ks - 3] == EMPTY)
                     {
                        if (!is_square_attacked(state, ks, 1 - state.side) &&
-                           !is_square_attacked(state, ks - 1, 1 - state.side) &&
-                           !is_square_attacked(state, ks - 2, 1 - state.side))
+                           !is_square_attacked(state, ks - 1, 1 - state.side)
+                          )
+                           // !is_square_attacked(state, ks - 2, 1 - state.side))
                         {
                              moves.push(encode_move(ks, ks - 2, 0, 0, 0, 0, 1));
                         }

@@ -1,4 +1,4 @@
-CXX = g++
+CXX = zig c++
 CFLAGS = -Wall -Wextra -ggdb -std=c++20 -O3
 CPPFLAGS = -MMD -MP 
 
