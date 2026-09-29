@@ -3,6 +3,7 @@
 
 namespace Quasar
 {
+    static std::array<std::array<uint8_t, 128>, 7> piece_keys;
     static int random_state = 12345;
     int get_random_32_number()
     {

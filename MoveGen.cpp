@@ -3,7 +3,31 @@
 
 namespace Quasar
 {
+
+    static constexpr std::array<int, BOARD_SIZE> castling_rights = {
+        7, 15, 15, 15,  3, 15, 15, 11,   NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
+        15, 15, 15, 15, 15, 15, 15, 15,  NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
+        15, 15, 15, 15, 15, 15, 15, 15,  NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
+        15, 15, 15, 15, 15, 15, 15, 15,  NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
+        15, 15, 15, 15, 15, 15, 15, 15,  NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
+        15, 15, 15, 15, 15, 15, 15, 15,  NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
+        15, 15, 15, 15, 15, 15, 15, 15,  NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE,
+        13, 15, 15, 15, 12, 15, 15, 14,  NONE, NONE, NONE, NONE, NONE, NONE, NONE, NONE
+    };
+
     static constexpr std::array<std::array<int, 2>, 2> castling_side = {{{1, 2}, {4, 8}}};
+    static constexpr std::array<std::array<int8_t, 8>, 7> move_offsets = {{
+        { 0 }, { -16, -1, 16, 1, -17, -15, 17, 15 },
+        { 0 }, { -33, -31, 33, 31, -18, -14, 18, 14 },
+        { -17, -15, 17, 15}, {-16, -1, 16, 1 },
+        { -16, -1, 16, 1, -17, -15, 17, 15 }
+    }};
+
+    static constexpr std::array<uint8_t, 7> offset_length = { 0, 8, 0, 8, 4, 4, 8 };
+
+    static constexpr std::array<uint8_t, 2> pawn_starting_rank  = {0x60, 0x10};
+    static constexpr std::array<uint8_t, 2> pawn_promoting_rank = {0x00, 0x70};
+
     int encode_move(int source, int target, int promoted, int capture,
                     int push, int enpassant, int castling)
     {

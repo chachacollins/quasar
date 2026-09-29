@@ -1,5 +1,5 @@
-CXX = zig c++
-CFLAGS = -Wall -Wextra -ggdb -std=c++20 -O3
+CXX = g++
+CFLAGS = -Wall -Wextra -ggdb -std=c++20 -O3 -march=native
 CPPFLAGS = -MMD -MP 
 
 SRCS = $(wildcard *.cpp)
