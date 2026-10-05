@@ -9,6 +9,7 @@
 #include "Hash.hpp"
 #include "Io.hpp"
 #include "MoveGen.hpp"
+#include "Perft.hpp"
 #include "Search.hpp"
 
 namespace Quasar
@@ -150,7 +151,7 @@ namespace Quasar
                 auto end = moves_sv.find(' ');
                 std::string_view move_str = (end == std::string_view::npos)
                     ? moves_sv
-                    : moves_sv.substr(0, end); // string_view::substr — no allocation
+                    : moves_sv.substr(0, end);
 
                 int move = parse_move(state, move_str);
                 if (move)
@@ -188,6 +189,11 @@ namespace Quasar
             {
                 std::cout << "readyok\n";
                 continue;
+            }
+            else if (sv.substr(0, 5) == "perft")
+            {
+                int depth = 5;
+                perft_test(state, depth);
             }
             else if (sv.substr(0, 23) == "position startpos moves")
             {

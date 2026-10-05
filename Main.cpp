@@ -6,7 +6,6 @@
 int main()
 {
     Quasar::State state;
-    Quasar::set_board(state, START_POSITION);
-    Quasar::perft_test(state, 4);
+    Quasar::uci(state);
     return 0;
 }
