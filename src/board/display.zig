@@ -10,7 +10,7 @@ pub fn print_board(bitboard: BitBoard) void {
         while(iter.next()) |file| {
             const shift: u6 = @intCast(LAST_BIT - (rank * 8) - file);
             const mask = @as(u64, 1) << shift;
-            const char: u8 = if ((mask & bitboard.value) != 0) '1' else '0';
+            const char: u8 = if ((mask & bitboard) != 0) '1' else '0';
             std.debug.print("{c}", .{char});
         }
         std.debug.print("\n", .{});
