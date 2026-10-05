@@ -1,6 +1,10 @@
 const std = @import("std");
+const board = @import("board");
+const BaseTypes = @import("base_types");
+const BitBoard  = BaseTypes.BitBoard;
 
 pub fn main() !void {
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
+    const Board = BitBoard{ .value = 1 };
+    board.display.print_board(Board);
 }
 
