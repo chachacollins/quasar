@@ -3,12 +3,12 @@
 ## ROADMAP
 
 ### Design and write the board representation
-- [ ] Represent the board
-- [ ] Represent the pieces
+- [x] Represent the board
+- [x] Represent the pieces
 - [ ] Read a position from an FEN-string
 - [ ] Keep the current state of the game
 - [ ] Keep a history of played moves
-- [ ] Implement Zobrist hashing
+- [x] Implement Zobrist hashing
 - [ ] Create functions to control the board
 - [ ] Create functions to get information from the board
 

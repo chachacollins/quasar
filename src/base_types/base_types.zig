@@ -24,4 +24,13 @@ pub const Square = enum(u6) {
     A6, B6, C6, D6, E6, F6, G6, H6,
     A7, B7, C7, D7, E7, F7, G7, H7,
     A8, B8, C8, D8, E8, F8, G8, H8,
-}
+};
+
+pub const NrOf = struct {
+    pub const SIDES = 2;
+    pub const PIECE_TYPES = 6;
+    pub const SQUARES = 64;
+    pub const CASTLING_PERMISSIONS = 16;
+    pub const FILES: usize = 8;
+    pub const RANKS: usize = 8;
+};
