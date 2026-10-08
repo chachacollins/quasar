@@ -34,3 +34,10 @@ pub const NrOf = struct {
     pub const FILES: usize = 8;
     pub const RANKS: usize = 8;
 };
+
+pub const EvalBase = struct {
+    material_mg: i32,
+    material_eg: i32,
+    psqt_mg: i32,
+    psqt_eg: i32,
+};

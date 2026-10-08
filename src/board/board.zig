@@ -1,4 +1,3 @@
-pub const display = @import("display.zig");
 const BaseTypes   = @import("base_types");
 const BitBoard    = BaseTypes.BitBoard;
 const Piece       = BaseTypes.Piece;
@@ -9,3 +8,6 @@ pub const Board = struct {
     bb_sides  : [NrOf.SIDES]BitBoard,
     piece_list: [NrOf.SQUARES]Piece,
 };
+
+pub const display = @import("display.zig");
+pub const gamestate = @import("gamestate.zig");
